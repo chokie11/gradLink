@@ -1,8 +1,4 @@
 <?php
-// $host = 'sql300.infinityfree.com';
-// $dbname = 'if0_41814114_alumni_system';
-// $username = 'if0_41814114';
-// $password = 'RI0mPEq5a3tkg0M';
 
 $host = 'localhost';
 $dbname = 'alumni_system';
