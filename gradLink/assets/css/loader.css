@@ -1,0 +1,46 @@
+/* GradLink global loader: full-page overlay, button spinner, top progress bar */
+:root { --gl-loader-color: var(--maroon, #800000); }
+body.partner-theme { --gl-loader-color: var(--partner-gold-dark, #d08c0c); }
+
+.gl-overlay {
+    position: fixed; inset: 0; z-index: 99999;
+    display: none; align-items: center; justify-content: center;
+    background: rgba(255, 255, 255, .72);
+    backdrop-filter: blur(2px);
+    cursor: progress;
+}
+.gl-overlay.show { display: flex; }
+.gl-overlay-box {
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+    background: #fff; padding: 26px 34px; border-radius: 20px; max-width: 86vw;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, .16); text-align: center;
+}
+.gl-spinner {
+    width: 44px; height: 44px; border-radius: 50%;
+    border: 4px solid rgba(0, 0, 0, .1); border-top-color: var(--gl-loader-color);
+    animation: gl-spin .8s linear infinite;
+}
+.gl-overlay-text { font-weight: 700; color: #2b2b2b; font-size: 15px; }
+.gl-overlay-sub { font-size: 13px; color: #6b7280; margin-top: -8px; }
+
+/* spinner inside the clicked button */
+.gl-btn-loading { position: relative; pointer-events: none; opacity: .85; }
+button.gl-btn-loading::before, a.gl-btn-loading::before {
+    content: ''; display: inline-block; width: 1em; height: 1em; margin-right: .5em;
+    vertical-align: -0.15em; border-radius: 50%;
+    border: 2px solid currentColor; border-right-color: transparent;
+    animation: gl-spin .7s linear infinite;
+}
+
+/* thin progress bar for normal page-to-page links */
+.gl-topbar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 100000;
+    background: var(--gl-loader-color); box-shadow: 0 0 8px var(--gl-loader-color);
+    transition: width .4s ease; pointer-events: none;
+}
+body.gl-busy, body.gl-busy * { cursor: progress !important; }
+
+@keyframes gl-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+    .gl-spinner, .gl-btn-loading::before { animation-duration: 1.6s; }
+}

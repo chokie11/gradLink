@@ -1,0 +1,5 @@
+# Only images are served from this folder; never execute scripts here.
+<FilesMatch "\.(php|phtml|php3|php4|php5|phps|phar|pl|py|cgi|sh)$">
+    Require all denied
+</FilesMatch>
+Options -Indexes
